@@ -67,8 +67,8 @@ export function createHtmlImgTag(
 		: `<img src="${src}" width="${imageWidth}">`;
 	
 	// Build centered HTML with figure caption
-	return `<center>
+	return `<div style="text-align: center;">
   ${imgTag}<br>
-  <b>Figure</b>.${figureCaption}
-</center>`;
+  <b>Figure</b>. ${figureCaption}
+</div>`;
 } 

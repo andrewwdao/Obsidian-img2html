@@ -74,8 +74,8 @@ describe('createHtmlImgTag', () => {
       false
     );
 
-    expect(result).toContain('<center>');
-    expect(result).toContain('</center>');
+    expect(result).toContain('<div style="text-align: center;">');
+    expect(result).toContain('</div>');
     expect(result).toContain('<img src="image_1234567890.png" width="80%">');
     expect(result).toContain('<br>');
     expect(result).toContain('<b>Figure</b>');
@@ -93,8 +93,8 @@ describe('createHtmlImgTag', () => {
       false
     );
 
-    expect(result).toContain('<center>');
-    expect(result).toContain('</center>');
+    expect(result).toContain('<div style="text-align: center;">');
+    expect(result).toContain('</div>');
     expect(result).toContain('<img src="assets/image_1234567890.png" width="80%">');
     expect(result).toContain('<b>Figure</b>');
     expect(result).toContain('image 1234567890.');
@@ -198,10 +198,10 @@ describe('createHtmlImgTag', () => {
       false
     );
 
-    const expectedFormat = `<center>
+    const expectedFormat = `<div style="text-align: center;">
   <img src="image_1234567890.png" width="80%"><br>
-  <b>Figure</b>.image 1234567890.
-</center>`;
+  <b>Figure</b>. image 1234567890.
+</div>`;
 
     expect(result).toBe(expectedFormat);
   });
