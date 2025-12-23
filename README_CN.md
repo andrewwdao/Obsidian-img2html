@@ -6,9 +6,10 @@
 
 ## 功能
 
-- 将粘贴的图片保存为文件并插入 HTML 格式的图片标签
+- 将粘贴的图片保存为文件并插入居中 HTML 格式的图片标签（带图注）
 - 支持自定义图片宽度
 - 支持自定义图片保存路径（如 `./assets`）
+- 自动根据图片文件名生成图注（下划线替换为空格）
 - 可选择是否包含 alt 属性
 - 粘贴时可选择显示通知
 
@@ -21,7 +22,16 @@ HTML 格式的图片标签比 Markdown 或 Obsidian 的 wikilink 格式更广泛
 1. 在 Obsidian 中安装此插件
 2. 复制一张图片（从浏览器、文件资源管理器或截图工具）
 3. 在 Obsidian 编辑器中粘贴
-4. 图片将被保存并以 HTML 格式插入：`<img src="image_name.jpg" width="auto">`
+4. 图片将被保存并以居中 HTML 格式插入（带图注）：
+
+```html
+<center>
+  <img src="image_1234567890.png" width="80%"><br>
+  <b>Figure</b>.image 1234567890.
+</center>
+```
+
+图注会根据图片文件名自动生成，下划线会被替换为空格，并在末尾添加句号。
 
 ### 自定义图片路径
 
@@ -32,12 +42,18 @@ HTML 格式的图片标签比 Markdown 或 Obsidian 的 wikilink 格式更广泛
 
 启用自定义路径后，HTML 图片标签中的 src 属性也会相应更新，例如：
 ```html
-<img src="./assets/image_1234567890.jpg" width="auto">
+<center>
+  <img src="./assets/image_1234567890.jpg" width="80%"><br>
+  <b>Figure</b>.image 1234567890.
+</center>
 ```
 
 如果不启用自定义路径，图片将保存在当前文件所在的目录中，并且 HTML 标签中只使用文件名：
 ```html
-<img src="image_1234567890.jpg" width="auto">
+<center>
+  <img src="image_1234567890.jpg" width="80%"><br>
+  <b>Figure</b>.image 1234567890.
+</center>
 ```
 
 ### 关于 alt 属性
@@ -45,7 +61,10 @@ HTML 格式的图片标签比 Markdown 或 Obsidian 的 wikilink 格式更广泛
 默认情况下，插件生成的 HTML 标签不包含 alt 属性，以保持代码简洁。如果您需要更好的无障碍性或 SEO 优化，可以在设置中启用"包含 alt 属性"选项，这将生成如下格式的标签：
 
 ```html
-<img src="image_1234567890.jpg" width="auto" alt="image_1234567890.jpg">
+<center>
+  <img src="image_1234567890.jpg" width="80%" alt="image_1234567890.jpg"><br>
+  <b>Figure</b>.image 1234567890.
+</center>
 ```
 
 ## 设置

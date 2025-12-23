@@ -6,9 +6,10 @@ A plugin for Obsidian that converts pasted images to HTML format instead of Obsi
 
 ## Features
 
-- Saves pasted images as files and inserts them as HTML image tags
+- Saves pasted images as files and inserts them as centered HTML image tags with figure captions
 - Supports custom image width
 - Supports custom image save paths (e.g., `./assets`)
+- Automatic figure caption generation from image filename (underscores replaced with spaces)
 - Optional alt attribute for better accessibility
 - Optional paste notifications
 
@@ -21,7 +22,16 @@ HTML image tags offer better compatibility across different platforms compared t
 1. Install the plugin in Obsidian
 2. Copy an image (from browser, file explorer, or screenshot tool)
 3. Paste in the Obsidian editor
-4. The image will be saved and inserted as HTML: `<img src="image_name.jpg" width="auto">`
+4. The image will be saved and inserted as centered HTML with a figure caption:
+
+```html
+<center>
+  <img src="image_1234567890.png" width="80%"><br>
+  <b>Figure</b>.image 1234567890.
+</center>
+```
+
+The figure caption is automatically generated from the image filename, with underscores replaced by spaces and a period added at the end.
 
 ### Custom Image Path
 
@@ -32,12 +42,18 @@ You can enable the "Use Custom Image Path" option in settings and set a custom s
 
 When custom path is enabled, the src attribute in HTML tags will be updated accordingly, for example:
 ```html
-<img src="./assets/image_1234567890.jpg" width="auto">
+<center>
+  <img src="./assets/image_1234567890.jpg" width="80%"><br>
+  <b>Figure</b>.image 1234567890.
+</center>
 ```
 
 If custom path is disabled, images will be saved in the same directory as the current file, and the HTML tag will only use the filename:
 ```html
-<img src="image_1234567890.jpg" width="auto">
+<center>
+  <img src="image_1234567890.jpg" width="80%"><br>
+  <b>Figure</b>.image 1234567890.
+</center>
 ```
 
 ### About Alt Attribute
@@ -45,7 +61,10 @@ If custom path is disabled, images will be saved in the same directory as the cu
 By default, the plugin generates HTML tags without the alt attribute to keep the code concise. If you need better accessibility or SEO optimization, you can enable the "Include Alt Attribute" option in settings, which will generate tags like:
 
 ```html
-<img src="image_1234567890.jpg" width="auto" alt="image_1234567890.jpg">
+<center>
+  <img src="image_1234567890.jpg" width="80%" alt="image_1234567890.jpg"><br>
+  <b>Figure</b>.image 1234567890.
+</center>
 ```
 
 ## Settings
