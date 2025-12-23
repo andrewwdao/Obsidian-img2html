@@ -16,7 +16,20 @@ export function getFileExtension(mimeType: string): string {
 }
 
 /**
- * Create HTML image tag
+ * Convert image filename to figure caption
+ * Removes file extension, replaces underscores with spaces, and adds a period at the end
+ */
+export function imageNameToFigureCaption(fileName: string): string {
+	// Remove file extension
+	const nameWithoutExt = fileName.replace(/\.[^.]+$/, '');
+	// Replace underscores with spaces
+	const caption = nameWithoutExt.replace(/_/g, ' ');
+	// Add period at the end
+	return `${caption}.`;
+}
+
+/**
+ * Create HTML image tag with centered format and figure caption
  */
 export function createHtmlImgTag(
 	fileName: string, 
@@ -45,10 +58,17 @@ export function createHtmlImgTag(
 		src = fileName;
 	}
 	
-	// Build HTML tag
-	if (includeAlt) {
-		return `<img src="${src}" width="${imageWidth}" alt="${fileName}">`;
-	} else {
-		return `<img src="${src}" width="${imageWidth}">`;
-	}
+	// Build figure caption from filename
+	const figureCaption = imageNameToFigureCaption(fileName);
+	
+	// Build HTML image tag
+	const imgTag = includeAlt 
+		? `<img src="${src}" width="${imageWidth}" alt="${fileName}">`
+		: `<img src="${src}" width="${imageWidth}">`;
+	
+	// Build centered HTML with figure caption
+	return `<center>
+  ${imgTag}<br>
+  <b>Figure</b>.${figureCaption}
+</center>`;
 } 
